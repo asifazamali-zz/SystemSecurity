@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+{%block fileuploads%}
+            
+        <div class="row" align='right'>
+                <div class="col-md-12">
+                <b>Uploaded Files</b>
+          {% if users %}
+          
+                        <ul>
+                        {% for usr in users %}
+                                <form method="POST" action="{% url 'find_friend' %}">{%csrf_token%}
+                                <li>{{usr.username}}<input type="hidden" name="frnd_name" value="{{ usr.username}}"><input type="submit" value="send Request"></li>
+                                </form>                        
+                        {% endfor %}
+                        </ul>
+                {% else %}
+                        <p>No Friends.</p>
+          {%endif%}
+                </div>
+        </div>
+                
+                 
+{%endblock%}

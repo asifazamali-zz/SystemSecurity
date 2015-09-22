@@ -1,0 +1,104 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+{%block jumbotron%}
+ <div class="row">
+  <div class="col-sm-2">
+    {% if user.is_authenticated %}
+          <p><b>Welcome</b> {{user}}</p>
+    {% endif %}
+  </div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-2"></div>
+   <div class="col-sm-2"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3 " >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <form action="" method="POST">{%csrf_token%}      
+      Friends
+      <p><input type="text" name="SearchBox">
+      <input type="submit" value="Find"></p>
+      {%if find_friend%}
+          {%for frnd in find_friend%}
+         <p>
+      <form method="POST" action="{% url 'find_friend' %}">{%csrf_token%}
+              {{frnd}}<input type="hidden" name="frnd_name" value="{{frnd}}"><input type="submit" value="send Request">
+          </form>
+
+      </p>
+          {%endfor%}
+
+      {%endif%}
+      </form>
+      </div>
+      <div class="panel-body ">
+      {%if friends %}
+      <ol style="list-style-type:none">
+
+        {% for frnd in friends %}
+            <li>{{frnd.friend_name }}</li>                 			
+        {% endfor %}
+      </ol> 
+      
+      {%endif %}
+      </div>
+    </div>  
+  </div>
+  
+</div>
+<div class="row">
+<div class="col-sm-2">
+    <p>
+		<form action="{% url 'file_save' %}" method='post'>{% csrf_token %}
+
+				{{txt }}
+
+		<br>
+
+		<input type="submit" id="submit" value="Save" style="visibility:hidden;">
+		</form>
+		</p>
+</div>
+  <div class="col-sm-2">
+
+</div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3 " >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      Uploads
+
+      <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>
+			{{form}}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
+		</form>
+      </div>
+      <div class="panel-body ">
+      {% if document %}
+                        
+                        <ul style="list-style-type:none">
+                        {% for documents in document %}
+                                {%ifequal documents.user_name request.user.username%}
+                                <li>{{documents.docfile.name }}
+                                <input type="button" id="lesen" value="Read" onclick="readTextFile('{{ documents.docfile.url }}','{{documents.docfile.name }}','{{documents.write}}')" /></li>
+                                {%endifequal%}			
+                        {% endfor %}
+                        </ul>
+                {% else %}
+                        <p>No documents.</p>
+                {% endif %}
+      </div>
+    </div>  
+  </div>
+  
+</div>
+
+{%endblock%}
+{%block content%}
+
+{%endblock%}
