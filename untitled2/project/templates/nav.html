@@ -1,5 +1,4 @@
-
-
+{%load filename%}
 <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -15,26 +14,34 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{%url 'home'%}">Home</a></li>
             <li><a href="{%url 'shared'%}">Shared</a></li>
-            {%if friend_list%}
+            {%if friend_list or shared_list%}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 {% for usr in friend_list %}
                  <form method="POST" action="{% url 'notification' %}">{%csrf_token%}
-                   <li>{{usr}}<input type="hidden" name="frnd_name" value="{{usr}}"><input type="submit" value="Accept"></li>
+                   <li>{{usr.user_name}}<input type="hidden" name="frnd_name" value="{{usr.user_name}}"><input type="submit" value="Accept"></li>
                  </form>
                 {%endfor%}
-                <!--<li role="separator" class="divider"></li>-->
-                <!--<li class="dropdown-header">Nav header</li>-->
-                <!--<li><a href="">Separated link</a></li>-->
-                <!--<li><a href="">One more separated link</a></li>-->
+                {%if shared_list%}
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Shared Docs</li>
+                {% for shr in shared_list %}
+                 <form method="POST" action="{% url 'read_notification' %}">{%csrf_token%}
+                   <li><b>{{shr.user_name}}</b>: {{shr.document_name|filename}}
+                     <input type="hidden" name="usr_name" value="{{shr.user_name}}">
+                     <input type="hidden" name="doc_name" value="{{shr.document_name}}">
+                     <input type="submit" value="Read"></li>
+                 </form>
+                {%endfor%}
+                {%endif%}
               </ul>
             </li>
-            {%endif%}
+           {%endif%}
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-          {% if not user.is_authenticated and "accounts/login" not in request.get_full_path %}
+          {% if not request.user.is_authenticated and "accounts/login" not in request.get_full_path %}
           <li><form class='navbar-form navbar-right' method ='POST' action ="{%url 'auth_login' %}">{% csrf_token %}
             <div class='form-group'>
               <input type='text' class='form-control' name='username' placeholder='Username'/>  
@@ -46,7 +53,7 @@
           </form>
           </li>
           {% endif %}
-          {% if user.is_authenticated %}
+          {% if request.user.is_authenticated %}
 
             <li><a href="{% url 'auth_logout' %}"><b>{{request.user}}&nbsp;&nbsp;&nbsp;</b>Logout</a></li>
             

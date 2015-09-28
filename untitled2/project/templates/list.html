@@ -63,7 +63,7 @@ rawFile.send(null);
 			{% for documents in document %}
 				{%ifequal documents.user_name request.user.username%}
 				<li>{{documents.docfile.name }}
-				<input type="button" id="lesen" value="Read" onclick="popitup2('{{ documents.docfile.url }}','{{documents.docfile.name }}','{{documents.write}}')" /></li>
+				<input type="button" id="lesen" value="Read" onclick="readTextFile('{{ documents.docfile.url }}','{{documents.docfile.name }}','{{documents.write}}')" /></li>
 				{%endifequal%}			
 			{% endfor %}
 			</ul>

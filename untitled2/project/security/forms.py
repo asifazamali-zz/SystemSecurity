@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import SignUp,Document,Friends,Request_send,Friends,Shared
+from .models import SignUp,Document,Friends,Request_send,Friends,Shared,Details,PrivacyDetails,PrivacyFriend,PrivacyDocs
 
 
 class ContactForm(forms.Form):
@@ -21,7 +21,6 @@ class DocumentForm(forms.ModelForm):
     #title = forms.CharField(max_length=50)
     #print title
     #docfile = forms.FileField()
-    print "In document form"
     class Meta:
         model=Document
         fields = ['docfile']
@@ -32,7 +31,7 @@ class FriendForm(forms.ModelForm):
 class RequestSendForm(forms.ModelForm):
     class Meta:
         model=Request_send
-        exclude= ['user_name','friend_req']
+        exclude= ['user_name','friend_req','document_name']
 
 class SharedForm(forms.ModelForm):
     class Meta:
@@ -43,8 +42,25 @@ class SharedForm(forms.ModelForm):
 class SaveForm(forms.Form):
     filePath = forms.CharField(widget = forms.HiddenInput(),max_length=100,required=False)
     message= forms.CharField(widget=forms.Textarea,label='',required=False)
-    
-    
+
+class SaveDetailsForm(forms.ModelForm):
+    class Meta:
+        model = Details
+        exclude = ['user_name','name','age','location','phnumber','email']
+
+class PrivacyDetailsForm(forms.ModelForm):
+    class Meta:
+        model = PrivacyDetails
+        exclude = ['user_name','name','age','location','phnumber','email']
+
+class PrivacyFriendForm(forms.ModelForm):
+    class Meta:
+        model = PrivacyFriend
+        exclude = ['user_name','privacy']
+class PrivacyDocumentForm(forms.ModelForm):
+    class Meta:
+        model = PrivacyDocs
+        exclude = ['user_name','docfile','privacy']
 #class RequestRecvForm(forms.ModelForm):
     #class Meta:
         #model=Request_recv

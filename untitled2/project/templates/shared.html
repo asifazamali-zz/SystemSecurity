@@ -1,15 +1,16 @@
 {%extends 'base.html'%}
 {%load staticfiles%}
+{%load filename%}
 {%block fileuploads%}
 
         <div class="row" align='right'>
                 <div class="col-md-12">
                 {% if shared %}
                        
-                        <ul>
+                        <ol style="list-style-type:none">
                         {% for shr in shared %}
                                 <form action="" method="POST">{% csrf_token %}
-                                <li>{{shr.docfile.name }}
+                                <li>{{shr.docfile|filename }}
                                 <select name="friend_select" required>
                                 <option value="">Select friends</option>
                                 {% if friends %}
@@ -30,7 +31,7 @@
                                 </li>
                                                         
                         {% endfor %}
-                        </ul>
+                        </ol>
                 {% else %}
                         <p>No documents.</p>
                 
