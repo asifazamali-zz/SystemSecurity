@@ -1,0 +1,29 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}introduction to information flow control}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}ANDROID Architecture}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Application Fundamentals:}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}App Components}{3}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Permission Model}{4}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Requesting Permissions}{4}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Intents}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Types Of Intent}{5}{subsection.2.3.1}
+\contentsline {chapter}{\numberline {3}Security In Android}{6}{chapter.3}
+\contentsline {subsection}{\numberline {3.0.2}Core Security Features That Used to Build Secure Application:}{6}{subsection.3.0.2}
+\contentsline {chapter}{\numberline {4}system design}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1} system configuration}{7}{section.4.1}
+\contentsline {section}{\numberline {4.2}Attack Scenario}{8}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1} Internal Activity Invocation Or Confused Deputy,}{8}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Application Sharing User ID With A Compromised Application}{8}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Collusion Attacks}{8}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Rules That Should Be Followed.}{8}{section.4.3}
+\contentsline {chapter}{\numberline {5}Information Flow Control}{10}{chapter.5}
+\contentsline {section}{\numberline {5.1}Defining the System}{10}{section.5.1}
+\contentsline {section}{\numberline {5.2}Defining policies for interprocess communication}{10}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}interaction between application}{10}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}Implement Of Information Flow Control}{11}{section.5.3}
+\contentsline {section}{\numberline {5.4}Categorize System Level Permission}{11}{section.5.4}
+\contentsline {section}{\numberline {5.5}Monitor Intercept All Implicit Intent}{11}{section.5.5}
+\contentsline {section}{\numberline {5.6}Operation On Intent}{12}{section.5.6}
+\contentsline {section}{\numberline {5.7}Operation For Finding Correct Receiver Application}{12}{section.5.7}
+\contentsline {chapter}{\numberline {6}Conclusion}{14}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{14}{section.6.1}

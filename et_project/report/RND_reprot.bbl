@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{akhawe2010towards}
+Devdatta Akhawe, Adam Barth, Peifung~E Lam, John Mitchell, and Dawn Song.
+\newblock Towards a formal foundation of web security.
+\newblock In {\em Computer Security Foundations Symposium (CSF), 2010 23rd
+  IEEE}, pages 290--304. IEEE, 2010.
+
+\bibitem{xssauditor}
+Daniel Bates, Adam Barth, and Collin Jackson.
+\newblock Regular expressions considered harmful in client-side xss filters.
+\newblock In {\em Proceedings of the 19th international conference on World
+  wide web}, pages 91--100. ACM, 2010.
+
+\bibitem{fonseca2008mapping}
+Jos{\'e} Fonseca and Marco Vieira.
+\newblock Mapping software faults with web security vulnerabilities.
+\newblock In {\em Dependable Systems and Networks With FTCS and DCC, 2008. DSN
+  2008. IEEE International Conference on}, pages 257--266. IEEE, 2008.
+
+\bibitem{galan2010multi}
+Eduardo Gal{\'a}n, Almudena Alcaide, Agust{\'\i}n Orfila, and Jorge Blasco.
+\newblock A multi-agent scanner to detect stored-xss vulnerabilities.
+\newblock In {\em Internet Technology and Secured Transactions (ICITST), 2010
+  International Conference for}, pages 1--6. IEEE, 2010.
+
+\bibitem{owasp}
+The Open Web Application Security~Project (OWASP).
+\newblock Owasp top ten project.
+\newblock Retrieved March 31, 2014 from
+  \url{https://www.owasp.org/index.php/Top_10_2013-Top_10}.
+
+\bibitem{xssfilt}
+Riccardo Pelizzi and R~Sekar.
+\newblock Protection, usability and improvements in reflected xss filters.
+\newblock In {\em ASIACCS}, page~5, 2012.
+
+\bibitem{ter2009blueprint}
+Mike Ter~Louw and VN~Venkatakrishnan.
+\newblock Blueprint: Robust prevention of cross-site scripting attacks for
+  existing browsers.
+\newblock In {\em Security and Privacy, 2009 30th IEEE Symposium on}, pages
+  331--346. IEEE, 2009.
+
+\end{thebibliography}
