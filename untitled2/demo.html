@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                document.getElementById("text").innerHTML=allText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+function saveTextFile(file){
+	var rawFile= new XMLHttpRequest();
+	rawFile.open("GET",file,false)
+}
+</script>
+</head>
+<body>
+<a href="static_in_env/media_root/uploads/asif/s.txt">get it</a><br>
+<div class="button">
+    <input type="button" id="lesen" value="Lesen!" onclick="readTextFile('static_in_env/media_root/uploads/asif/s.txt')" />
+</div>
+
+<textarea id="text">
+	
+</textarea>
+</body>
+</html>
