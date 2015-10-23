@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 def get_upload_file_name(instance,filename):
     #print instance.author
     return "uploads/%s/%s" % (instance.user_name,filename)
-
+def dummy_function(instance,filename):
+    #print instance.author
+    return
 
 class SignUp(models.Model):
     email = models.EmailField()
@@ -38,7 +40,7 @@ class Friends(models.Model):
 class Request_send(models.Model):
     user_name= models.CharField(max_length=200,default='00000')
     friend_req= models.CharField(max_length=200,default='00000')
-    document_name = models.FileField(default='00000')
+    document_name = models.FileField(upload_to=dummy_function,default='00000')
     class Meta:
         db_table="request_send"
 
@@ -78,10 +80,29 @@ class PrivacyFriend(models.Model):
 
 class PrivacyDocs(models.Model):
     user_name = models.CharField(max_length=200)
-    docfile = models.FileField(default='00000')
+    docfile = models.FileField(upload_to=dummy_function,default='00000')
     privacy = models.CharField(max_length=2,default='0')
     class Meta:
         db_table = "document_privacy"
+
+class Question(models.Model):
+    question = models.CharField(max_length=200)
+    option_a = models.CharField(max_length=200)
+    option_b = models.CharField(max_length=200)
+    option_c = models.CharField(max_length=200)
+    option_d = models.CharField(max_length=200)
+    option_correct = models.CharField(max_length=2)
+    class Meta:
+        db_table='questions'
+
+class Answer(models.Model):
+    user_name = models.CharField(max_length=500)
+    question_id = models.CharField(max_length=2)
+    answer = models.CharField(max_length=2)
+    class Meta:
+        db_table='answer'
+
+
 #class Request_recv(models.Model):
     #user_name= models.CharField(max_length=200,default='00000')
     #friend_req= models.CharField(max_length=200,default='00000')

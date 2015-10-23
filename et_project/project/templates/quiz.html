@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+{%load filename%}
+{%block jumbotron%}
+{%load staticfiles%}
+    <style>
+    #id_state{
+        display: inline;
+        list-style-type: none;
+        padding-right: 20px;
+    }
+    #id_question{
+        width: 300px;
+        height: 100px;
+    }
+    </style>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+
+      {% if ques.question %}
+      <form action ="" method = "POST">{%csrf_token%}
+        Question{{ques.question}}
+        <input type="hidden" name="question_id" value="{{ quest.question_id }}">
+        <input type="radio" name="options" value="0">{{ ques.option_a }}<br>
+        <input type="radio" name="options" value="1">{{ ques.option_b }}<br>
+        <input type="radio" name="options" value="2">{{ ques.option_c }}<br>
+        <input type="radio" name="options" value="3">{{ ques.option_d }}<br>
+        <input type="submit" value="Submit">
+      </form>
+      {% endif %}
+
+  </div>
+</div>
+{ %if request.user.is_superuser % }
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+     <form action ="" method = "POST">{%csrf_token%}
+      Question<br>
+      {{ form.question }}<br>
+
+      Option_a{{ form.option_a }}<input type="radio" class='radio_1' name="correct" value="0" checked><br>
+      Option_b{{ form.option_b }}<input type="radio" class='radio_1'  name="correct" value="1"><br>
+      Option_c{{ form.option_c }}<input type="radio" class='radio_1'  name="correct" value="2"><br>
+      Option_d{{ form.option_d }}<input type="radio" class='radio_1'  name="correct" value="3"><br>
+      <input type="submit" value="Submit">
+     </form>
+  </div>
+</div>
+{ %endif% }
+{% endblock %}

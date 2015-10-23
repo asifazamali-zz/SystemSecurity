@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import SignUp,Document,Friends,Request_send,Friends,Shared,Details,PrivacyDetails,PrivacyFriend,PrivacyDocs
+from .models import SignUp,Document,Friends,Request_send,Friends,Shared,Details,PrivacyDetails,PrivacyFriend,PrivacyDocs,Question,Answer
 
 
 class ContactForm(forms.Form):
@@ -61,6 +61,17 @@ class PrivacyDocumentForm(forms.ModelForm):
     class Meta:
         model = PrivacyDocs
         exclude = ['user_name','docfile','privacy']
+
+class QuestionForm(forms.ModelForm):
+    #question = forms.CharField(widget=forms.Textarea,label='',required=False)
+    class Meta:
+        model= Question
+        fields = ['question','option_a','option_b','option_c','option_d']
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        exclude = ['user_name','answer','question_id']
+
 #class RequestRecvForm(forms.ModelForm):
     #class Meta:
         #model=Request_recv

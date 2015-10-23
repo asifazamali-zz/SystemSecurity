@@ -32,7 +32,9 @@ urlpatterns = [
     url(r'^save/','security.views.save', name = 'file_save'),
     url(r'^save_details/','security.views.save_details', name = 'save_details'),
     url(r'^update_privacy/','security.views.update_privacy', name = 'update_privacy'),
-
+    url(r'^quiz/','security.views.quiz',name='quiz'),
+    url(r'^edit/','security.views.edit',name='edit'),
+    url(r'^delete/','security.views.delete',name='delete'),
     url(r'^demo/','security.views.demo', name = 'demo'),    
     url(r'^register/complete/$','security.views.registration_complete',name='registration_complete'),   
     url(r'^accounts/', include('registration.backends.simple.urls')),

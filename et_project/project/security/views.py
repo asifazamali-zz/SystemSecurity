@@ -4,8 +4,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.core.files import File
-from .models import Document,Request_send,Shared,Friends,Details,PrivacyDetails,PrivacyFriend,PrivacyDocs
-from .forms import SignUpForm,ContactForm,DocumentForm,RequestSendForm,FriendForm,SaveForm,SaveDetailsForm,PrivacyDetailsForm,PrivacyFriendForm,PrivacyDocumentForm
+from .models import Document,Request_send,Shared,Friends,Details,PrivacyDetails,PrivacyFriend,PrivacyDocs,Question
+from .forms import SignUpForm,ContactForm,DocumentForm,RequestSendForm,FriendForm,SaveForm,SaveDetailsForm,PrivacyDetailsForm,PrivacyFriendForm,PrivacyDocumentForm,QuestionForm,AnswerForm
 from django.db import connection
 from project.settings import MEDIA_ROOT
 from django.db.models import Q
@@ -102,7 +102,7 @@ def home(request):
         print t.privacy
     return render_to_response(
             'home.html',
-            {'friends': q,'reversed_friends':r,'mydocs': mydocs,'shared_docs':shared_docs,'find_friend':find_friend,'txt':form1,'form':form,
+            {'request':request,'friends': q,'reversed_friends':r,'mydocs': mydocs,'shared_docs':shared_docs,'find_friend':find_friend,'txt':form1,'form':form,
              'friend_list':friend_list,'name':name,'age':age,
              'location':location,'phnumber':phnumber,'email':email,'shared_list':shared_list,'num_docs':i,
              'n_privacy':n_privacy,'a_privacy':a_privacy,'l_privacy':l_privacy,'p_privacy':p_privacy,'e_privacy':e_privacy,
@@ -514,6 +514,55 @@ def save_details(request):
     return render_to_response(
     'home.html',
     {},context_instance=RequestContext(request))
+def edit(request):
+    print "inside edit"
+
+    return HttpResponseRedirect('/quiz')
+
+def delete(request):
+    quest=Question.objects.filter(id=request.POST.get('quest_id'))
+    if (quest):
+        quest.delete()
+    print "inside delete"
+    return HttpResponseRedirect('/quiz')
+def quiz(request):
+    form=QuestionForm(request.POST or None)
+    ansform = AnswerForm(request.POST or None)
+    question=Question.objects.filter(id='1')
+    uploaded =Question.objects.all()
+    submission=''
+    if(question):
+        ques= question[0]
+    else:
+        ques=''
+    if request.method=='POST':
+        if form.is_valid():
+            correct=request.POST.get('correct')
+            default_dict={'question':request.POST.get('question'),'option_a':request.POST.get('option_a'),'option_b':request.POST.get('option_b'),'option_c':request.POST.get('option_c'),'option_d':request.POST.get('option_d'),'option_correct':request.POST.get('option_correct')}
+            #instance = form.save(commit=False)
+            #print instance.question
+            #instance.option_correct=correct
+            bool,created=Question.objects.update_or_create(id=request.POST.get('id'),defaults=default_dict)
+            form.save()
+            form=QuestionForm()
+        else:
+            print 'not valid'
+        if ansform.is_valid():
+            instance = ansform.save(commit=False)
+            instance.answer = request.POST.get('options','')
+            if(instance.answer):
+
+                instance.user_name = request.user.username
+
+                print 'answer '+str(instance.answer)
+                instance.question_id = request.POST.get('question_id')
+                instance.save()
+                ques    =''
+                submission='Your answer has submitted!!'
+    return render_to_response(
+    'quiz.html',
+    {'request':request,'form':form,'ques':ques,'submission':submission,'uploaded':uploaded},context_instance=RequestContext(request))
+
 
 
 
